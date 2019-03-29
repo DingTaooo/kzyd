@@ -1,4 +1,4 @@
-"""HelloWorld URL Configuration
+"""kzyd URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -14,11 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+# from backend import views
+from django.contrib import admin
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
-from django.urls import path
+from backend import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'', TemplateView.as_view(template_name="index.html")),
+    url(r'^index/', TemplateView.as_view(template_name="index.html")),
+    url(r'^orm/', views.orm),
+    # url(r'^index/', views.index),
 ]
