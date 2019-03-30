@@ -1,32 +1,187 @@
-<style lang="less">
-  .userinfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+/*
+ * @Author: 蠢卫星 
+ * @Date: 2019-03-29 13:25:52 
+ * @Last Modified by: 蠢卫星
+ * @Last Modified time: 2019-03-30 11:59:41
+ */
 
-  .userinfo-avatar {
-    width: 80rpx;
-    height: 80rpx;
-    border-radius: 50%;
-  }
-
-  .userinfo-nickname {
-    color: #aaa;
+<style lang="scss">
+  @import "../assets/iconfont/iconfont";
+  .container{
+    padding: 20rpx;
+    .search-box{
+      width: 100%;
+      .input{
+        padding: 10rpx 0;
+        padding-left: 60rpx;
+        border-radius: 40rpx;
+        background-color:#f5f5f5;
+        font-size: 12px;
+      }
+    }
+    .column{
+      margin-top: 40rpx;
+      border-radius: 20rpx;
+      &.my-books{
+        height: 810rpx;
+      }
+      &.other{
+        margin-top: 80rpx;
+      }
+      .title{
+        height: 60rpx;
+        padding-top: 10rpx;
+        text-align: center;
+      }
+      .books{
+        width: 100%;
+        .book{
+          float: left;
+          width: 180rpx;
+          margin: 10rpx 28rpx;
+          .cover{
+            width: 100%;
+            height: 252rpx;
+            border-radius: 8rpx;
+            border: 1px solid #f2e7e7;
+            .image{
+              width: 100%;
+              box-shadow: 0px 15px 10px -15px #999;
+            }
+          }
+          .name{
+            margin-top: 10rpx;
+            font-size: 16px;
+            font-weight: bold;
+          }
+          .author{
+            margin-bottom: 10rpx;
+            font-size: 10px;
+            color: #999;
+          }
+        }
+      }
+      .othor-books{
+        padding: 0 20rpx;
+        .book{
+          display: flex;
+          margin: 40rpx 0;
+          &:first-child{
+            margin-top: 0;
+          }
+          .cover{
+            flex: none;
+            height: 160rpx;
+            width: 160rpx;
+            .image{
+              height: 100%;
+              width: 100%;
+              border-radius: 10rpx;
+              overflow: hidden;
+              box-shadow: 0px 15px 10px -15px #999;
+            }
+          }
+          .intro{
+            flex: 1;
+            margin-left: 40rpx;
+            max-width: 480rpx;
+            .name{
+              font-size: 16px;
+            }
+            .author{
+              font-size: 10px;
+              color: #999;
+            }
+            .brief{
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
+              word-break:break-all;
+              font-size: 12px;
+              color: #666;
+            }
+          }
+        }
+      }
+    }
   }
 </style>
+
 <template>
   <view class="container">
-    <view class="userinfo" @tap="handleViewTap">
-      <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
-      <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
-      <view>hello</view>
-      <view>
-        <form action="/index" method="post">
-          <input type="text" name="username"/>
-          <input type="password" name="password"/>
-          <input type="submit" value="提交"/>
-        </form>
+    <view class="search-box">
+      <input type="text" class="input" placeholder="搜索您想要的书籍">
+    </view>
+    <view class="column my-books">
+      <view class="title">
+        - 我的书架 -
+      </view>
+      <view class="books">
+        <repeat for="{{books}}" key="index" index= "index" item= "item">
+          <view class="book">
+            <view class="cover">
+              <image src="{{item.cover}}" mode="widthFix" class="image">
+            </view>
+            <view class="name ellipsis">
+              {{item.name}}
+            </view>
+            <view class="author ellipsis">
+              {{item.author}}
+            </view>
+          </view>
+        </repeat>
+      </view>
+    </view>
+    <view class="column other">
+      <view class="title">
+        - 最受欢迎 -
+      </view>
+      <view class="othor-books">
+        <repeat for="{{books}}" key="index" index= "index" item= "item">
+          <view class="book" wx:if="{{index < 3}}">
+            <view class="cover">
+              <image src="{{item.cover}}" mode="aspectFill" class="image">
+            </view>
+            <view class="intro">
+              <view class="name ellipsis">
+                {{item.name}}了不起的盖子吧dfgsdfgsdfgsdfg电风扇电风扇发士大夫
+              </view>
+              <view class="author ellipsis">
+                {{item.author}}
+              </view>
+              <view class="brief">
+                {{item.author}}简介ewrwerwwwwwwwwwwwwwwwwwwwwwwwwwwsdfgsdfg发射点发射点当时的双方都是
+              </view>
+            </view>
+          </view>
+        </repeat>
+      </view>
+    </view>
+    <view class="column other">
+      <view class="title">
+        - 推荐书籍 -
+      </view>
+      <view class="othor-books">
+        <repeat for="{{books}}" key="index" index= "index" item= "item">
+          <view class="book" wx:if="{{index < 3}}">
+            <view class="cover">
+              <image src="{{item.cover}}" mode="aspectFill" class="image">
+            </view>
+            <view class="intro">
+              <view class="name ellipsis">
+                {{item.name}}了不起的盖子吧dfgsdfgsdfgsdfg电风扇电风扇发士大夫
+              </view>
+              <view class="author ellipsis">
+                {{item.author}}
+              </view>
+              <view class="brief">
+                {{item.author}}简介ewrwerwwwwwwwwwwwwwwwwwwwwwwwwwwsdfgsdfg发射点发射点当时的双方都是
+              </view>
+            </view>
+          </view>
+        </repeat>
       </view>
     </view>
   </view>
@@ -34,173 +189,56 @@
 
 <script>
   import wepy from 'wepy'
-  import { connect } from 'wepy-redux'
-  import Panel from '@/components/panel' // alias example
-  import Counter from 'counter' // alias example
-  import List from '../components/list' // aliasFields example
-  import moduleA from 'module-a' // aliasFields ignore module example
-  import Group from '../components/group'
-  import Toast from 'wepy-com-toast'
-  import testMixin from '../mixins/test'
-
-  console.log('moduleA ignored: ', moduleA) // => moduleA ignored: {}
-
-  @connect({
-    num (state) {
-      return state.counter.num
-    },
-    asyncNum (state) {
-      return state.counter.asyncNum
-    },
-    sumNum (state) {
-      return state.counter.num + state.counter.asyncNum
-    }
-  })
-
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: 'test'
+      navigationBarTitleText: '主页'
     }
-    components = {
-      panel: Panel,
-      counter1: Counter,
-      counter2: Counter,
-      list: List,
-      group: Group,
-      toast: Toast
-    }
-
-    mixins = [testMixin]
-
+    components = {}
+    mixins = []
     data = {
-      mynum: 20,
-      userInfo: {
-        nickName: '加载中...'
-      },
-      normalTitle: '原始标题',
-      setTimeoutTitle: '标题三秒后会被修改',
-      count: 0,
-      netrst: '',
-      groupList: [
+      books: [
         {
-          id: 1,
-          name: '点击改变',
-          list: [
-            {
-              childid: '1.1',
-              childname: '子项，点我改变'
-            }, {
-              childid: '1.2',
-              childname: '子项，点我改变'
-            }, {
-              childid: '1.3',
-              childname: '子项，点我改变'
-            }
-          ]
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '123',
+          author: '蠢卫星'
         },
         {
-          id: 2,
-          name: '点击改变',
-          list: [
-            {
-              childid: '2.1',
-              childname: '子项，点我改变'
-            }, {
-              childid: '2.2',
-              childname: '子项，点我改变'
-            }, {
-              childid: '2.3',
-              childname: '子项，点我改变'
-            }
-          ]
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '123',
+          author: '蠢卫星'
         },
         {
-          id: 3,
-          name: '点击改变',
-          list: [
-            {
-              childid: '3.1',
-              childname: '子项，点我改变'
-            }
-          ]
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '123',
+          author: '蠢卫星'
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '123',
+          author: '蠢卫星'
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '哦iOS给是个',
+          author: '蠢卫星'
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '123',
+          author: '蠢卫星'
         }
       ]
     }
-
-    computed = {
-      now () {
-        return +new Date()
-      }
-    }
-
-    methods = {
-      plus () {
-        this.mynum++
-      },
-      toast () {
-        let promise = this.$invoke('toast', 'show', {
-          title: '自定义标题',
-          img: 'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
-        })
-
-        promise.then((d) => {
-          console.log('toast done')
-        })
-      },
-      tap () {
-        console.log('do noting from ' + this.$name)
-      },
-      communicate () {
-        console.log(this.$name + ' tap')
-
-        this.$invoke('counter2', 'minus', 45, 6)
-        this.$invoke('counter1', 'plus', 45, 6)
-
-        this.$broadcast('index-broadcast', 1, 3, 4)
-      },
-      request () {
-        let self = this
-        let i = 10
-        let map = ['MA==', 'MQo=', 'Mg==', 'Mw==', 'NA==', 'NQ==', 'Ng==', 'Nw==', 'OA==', 'OQ==']
-        while (i--) {
-          wepy.request({
-            url: 'https://www.madcoder.cn/tests/sleep.php?time=1&t=css&c=' + map[i] + '&i=' + i,
-            success: function (d) {
-              self.netrst += d.data + '.'
-              self.$apply()
-            }
-          })
-        }
-      },
-      counterEmit (...args) {
-        let $event = args[args.length - 1]
-        console.log(`${this.$name} receive ${$event.name} from ${$event.source.$name}`)
-      }
-    }
-
-    events = {
-      'index-emit': (...args) => {
-        let $event = args[args.length - 1]
-        console.log(`${this.$name} receive ${$event.name} from ${$event.source.$name}`)
-      }
-    }
-
-    onLoad() {
-      let self = this
-      this.$parent.getUserInfo(function (userInfo) {
-        if (userInfo) {
-          self.userInfo = userInfo
-        }
-        self.normalTitle = '标题已被修改'
-
-        self.setTimeoutTitle = '标题三秒后会被修改'
-        setTimeout(() => {
-          self.setTimeoutTitle = '到三秒了'
-          self.$apply()
-        }, 3000)
-
-        self.$apply()
-      })
-    }
+    computed = {}
+    methods = {}
+    events = {}
+    onLoad() {}
+    onShow() {}
   }
 </script>
