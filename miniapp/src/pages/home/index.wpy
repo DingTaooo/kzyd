@@ -1,0 +1,258 @@
+/*
+ * @Author: 蠢卫星 
+ * @Date: 2019-03-29 13:25:52 
+ * @Last Modified by: 蠢卫星
+ * @Last Modified time: 2019-04-01 18:24:00
+ */
+
+<style lang="scss">
+  @import "../../assets/iconfont/iconfont";
+  .container{
+    .search-box{
+      width: 100%;
+      .input{
+        padding: 10rpx 0;
+        padding-left: 60rpx;
+        border-radius: 40rpx;
+        background-color:#f5f5f5;
+        font-size: 12px;
+      }
+    }
+    .column{
+      border-radius: 20rpx;
+      margin-top: 20rpx;
+      &:first-child{
+        margin-top: 0;
+      }
+      .title{
+        height: 60rpx;
+        padding-top: 10rpx;
+        text-align: center;
+      }
+      .books{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        .book{
+          width: 180rpx;
+          margin: 10rpx 28rpx;
+          .cover{
+            width: 100%;
+            height: 252rpx;
+            border-radius: 8rpx;
+            border: 1px solid #f2e7e7;
+            .image{
+              width: 100%;
+              box-shadow: 0px 15px 10px -15px #999;
+            }
+          }
+          .name{
+            margin-top: 10rpx;
+            font-size: 16px;
+            font-weight: bold;
+          }
+          .author{
+            margin-bottom: 10rpx;
+            font-size: 10px;
+            color: #999;
+          }
+        }
+      }
+      .tip{
+        margin: 60rpx 0;
+        text-align: center;
+        .warning{
+          padding: 10rpx 30rpx;
+          display: inline;
+          background-color: #f5f5f5;
+          border-radius: 30rpx;
+        }
+      }
+      .othor-books{
+        padding: 20rpx;
+        .book{
+          display: flex;
+          margin: 40rpx 0;
+          &:first-child{
+            margin-top: 0;
+          }
+          .cover{
+            flex: none;
+            height: 160rpx;
+            width: 160rpx;
+            .image{
+              height: 100%;
+              width: 100%;
+              border-radius: 10rpx;
+              overflow: hidden;
+              box-shadow: 0px 15px 10px -15px #999;
+            }
+          }
+          .intro{
+            flex: 1;
+            margin-left: 40rpx;
+            max-width: 480rpx;
+            .name{
+              font-size: 16px;
+            }
+            .author{
+              font-size: 10px;
+              color: #999;
+            }
+            .brief{
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
+              word-break:break-all;
+              font-size: 12px;
+              color: #666;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<template>
+  <view class="container">
+    <view class="search-box">
+      <input type="text" class="input" placeholder="搜索您想要的书籍" />
+    </view>
+    <view class="column my-books">
+      <view class="title">- 我的书架 -</view>
+      <view class="books">
+        <repeat for="{{books}}" key="index" index= "index" item= "item">
+          <navigator class="book" wx:if="{{index < 5}}" url="bookDetail">
+            <view class="cover">
+              <image src="{{item.cover}}" mode="widthFix" class="image"/>
+            </view>
+            <view class="name ellipsis">
+              {{item.name}}
+            </view>
+            <view class="author ellipsis">
+              {{item.author}}
+            </view>
+          </navigator>
+        </repeat>
+      </view>
+      <view class="tip" wx:if="{{books.length == 0}}">
+        <view class="warning">您的书架还没有书，快去添加吧！</view>
+      </view>
+    </view>
+    <view class="column other">
+      <view class="title">
+        - 最受欢迎 -
+      </view>
+      <view class="othor-books">
+        <repeat for="{{books}}" key="index" index= "index" item= "item">
+          <view class="book" wx:if="{{index < 3}}" @tap="tabToDetail">
+            <view class="cover">
+              <image src="{{item.cover}}" mode="aspectFill" class="image"/>
+            </view>
+            <view class="intro">
+              <view class="name ellipsis">
+                {{item.name}}了不起的盖子吧dfgsdfgsdfgsdfg电风扇电风扇发士大夫
+              </view>
+              <view class="author ellipsis">
+                {{item.author}}
+              </view>
+              <view class="brief">
+                {{item.author}}简介ewrwerwwwwwwwwwwwwwwwwwwwwwwwwwwsdfgsdfg发射点发射点当时的双方都是
+              </view>
+            </view>
+          </view>
+        </repeat>
+      </view>
+    </view>
+    <view class="column other">
+      <view class="title">
+        - 推荐书籍 -
+      </view>
+      <view class="othor-books">
+        <repeat for="{{books}}" key="index" index= "index" item= "item">
+          <view class="book" wx:if="{{index < 3}}">
+            <view class="cover">
+              <image src="{{item.cover}}" mode="aspectFill" class="image"/>
+            </view>
+            <view class="intro">
+              <view class="name ellipsis">
+                {{item.name}}了不起的盖子吧dfgsdfgsdfgsdfg电风扇电风扇发士大夫
+              </view>
+              <view class="author ellipsis">
+                {{item.author}}
+              </view>
+              <view class="brief">
+                {{item.author}}简介ewrwerwwwwwwwwwwwwwwwwwwwwwwwwwwsdfgsdfg发射点发射点当时的双方都是
+              </view>
+            </view>
+          </view>
+        </repeat>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '主页'
+    }
+    components = {}
+    mixins = []
+    data = {
+      books: [
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '123',
+          author: '蠢卫星'
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '123',
+          author: '蠢卫星'
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '123',
+          author: '蠢卫星'
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '123',
+          author: '蠢卫星'
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '哦iOS给是个',
+          author: '蠢卫星'
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '123',
+          author: '蠢卫星'
+        }
+      ]
+    }
+    computed = {}
+    methods = {
+      tabToDetail() {
+        wepy.navigateTo({
+          url: '../bookDetail'
+        })
+      }
+    }
+    events = {}
+    onLoad() {}
+    onShow() {}
+  }
+</script>

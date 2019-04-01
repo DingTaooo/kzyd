@@ -1,0 +1,101 @@
+/*
+ * @Author: 蠢卫星 
+ * @Date: 2019-03-29 13:25:52 
+ * @Last Modified by: 蠢卫星
+ * @Last Modified time: 2019-04-01 19:57:22
+ */
+
+<style lang="scss">
+  @import "../../assets/iconfont/iconfont";
+  .container{
+    padding: 0;
+    .info{
+      position: relative;
+      height: 200rpx;
+      background-image: url("https://wx2.sinaimg.cn/mw690/dc84bcc3gy1g1n0627kkaj21kw0icx6m.jpg");
+      background-size: 100%;
+      .image{
+        position: absolute;
+        bottom: -60rpx;
+        left: 60rpx;
+        height: 120rpx;
+        width: 120rpx;
+        border-radius: 50%;
+        border: 4rpx solid #fff;
+        border-radius: 50%;
+      }
+      .name{
+        position: absolute;
+        bottom: 10rpx;
+        left: 210rpx;
+        font-size: 16px;
+        color: #fff;
+        font-weight: bold;
+      }
+    }
+    .operations{
+      margin-top: 80rpx;
+      .operation{
+        padding-left: 40rpx;
+        height: 100rpx;
+        display: flex;
+        align-items: center;
+        border-bottom: 1rpx solid #f2f2f2;
+        .iconfont{
+          margin-right: 20rpx;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+</style>
+
+<template>
+  <view class="container">
+    <view class="info">
+      <image src="{{userInfo.avatarUrl}}" class="image"/>
+      <view class="name">{{userInfo.nickName}}</view>
+    </view>
+    <view class="operations">
+      <repeat for="{{operation}}" key="index" index= "index" item= "item">
+        <view class="operation"><i class="iconfont {{item.icon}}"></i>{{item.operateName}}</view>
+      </repeat>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '我的'
+    }
+    components = {}
+    mixins = []
+    data = {
+      userInfo: {},
+      operation: [
+        {
+          icon: 'icon-book',
+          operateName: '我的消息'
+        },
+        {
+          icon: 'icon-home',
+          operateName: '我的消息'
+        },
+        {
+          icon: 'icon-book',
+          operateName: '我的消息'
+        }
+      ]
+    }
+    computed = {}
+    methods = {}
+    events = {}
+    onLoad() {
+      this.userInfo = this.$parent.globalData.userInfo
+      this.$apply()
+    }
+    onShow() {}
+  }
+</script>

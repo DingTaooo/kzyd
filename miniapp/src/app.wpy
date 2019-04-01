@@ -1,9 +1,11 @@
 <style lang="less">
   .container {
+    padding: 20rpx;
     font-size: 14px;
     color: #333;
     height: 100%;
     box-sizing: border-box;
+    text-align: justify;
   }
   .ellipsis{
     display: inline-block;
@@ -20,9 +22,10 @@
   export default class extends wepy.app {
     config = {
       pages: [
-        'pages/index',
-        'pages/circle',
-        'pages/user'
+        'pages/home/index',
+        'pages/home/bookDetail',
+        'pages/circle/circle',
+        'pages/user/user'
       ],
       window: {
         backgroundTextStyle: 'light',
@@ -36,17 +39,17 @@
         backgroundColor: '#fff',
         borderStyle: 'black',
         list: [{
-          pagePath: 'pages/index',
+          pagePath: 'pages/home/index',
           text: '首页',
           'iconPath': 'images/home.png',
           'selectedIconPath': 'images/homeSelected.png'
         }, {
-          pagePath: 'pages/circle',
+          pagePath: 'pages/circle/circle',
           text: '畅想圈',
           'iconPath': 'images/circle.png',
           'selectedIconPath': 'images/circleSelected.png'
         }, {
-          pagePath: 'pages/user',
+          pagePath: 'pages/user/user',
           text: '我的',
           'iconPath': 'images/user.png',
           'selectedIconPath': 'images/userSelected.png'
