@@ -2,7 +2,7 @@
  * @Author: 蠢卫星 
  * @Date: 2019-03-29 13:25:52 
  * @Last Modified by: 蠢卫星
- * @Last Modified time: 2019-04-01 18:24:00
+ * @Last Modified time: 2019-04-02 17:50:33
  */
 
 <style lang="scss">
@@ -10,8 +10,9 @@
   .container{
     .search-box{
       width: 100%;
-      .input{
-        padding: 10rpx 0;
+      .search{
+        color: #999;
+        padding: 20rpx 0;
         padding-left: 60rpx;
         border-radius: 40rpx;
         background-color:#f5f5f5;
@@ -56,16 +57,6 @@
             font-size: 10px;
             color: #999;
           }
-        }
-      }
-      .tip{
-        margin: 60rpx 0;
-        text-align: center;
-        .warning{
-          padding: 10rpx 30rpx;
-          display: inline;
-          background-color: #f5f5f5;
-          border-radius: 30rpx;
         }
       }
       .othor-books{
@@ -119,7 +110,7 @@
 <template>
   <view class="container">
     <view class="search-box">
-      <input type="text" class="input" placeholder="搜索您想要的书籍" />
+      <navigator class="search" url="search">搜索您想要的图书</navigator>
     </view>
     <view class="column my-books">
       <view class="title">- 我的书架 -</view>
@@ -143,12 +134,10 @@
       </view>
     </view>
     <view class="column other">
-      <view class="title">
-        - 最受欢迎 -
-      </view>
+      <view class="title">- 最受欢迎 -</view>
       <view class="othor-books">
         <repeat for="{{books}}" key="index" index= "index" item= "item">
-          <view class="book" wx:if="{{index < 3}}" @tap="tabToDetail">
+          <view class="book" wx:if="{{index < 3}}">
             <view class="cover">
               <image src="{{item.cover}}" mode="aspectFill" class="image"/>
             </view>

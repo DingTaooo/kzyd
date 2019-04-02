@@ -1,0 +1,167 @@
+/*
+ * @Author: 蠢卫星 
+ * @Date: 2019-04-02 15:55:08 
+ * @Last Modified by: 蠢卫星
+ * @Last Modified time: 2019-04-02 17:00:39
+ */
+
+<style lang="scss">
+  @import "../../assets/iconfont/iconfont";
+  .container{
+    padding: 0;
+    .circle{
+      padding: 0 20rpx;
+      margin-top: 30rpx;
+      border-bottom: 15rpx solid #ededed;
+      &:first-child{
+        margin-top: 0;
+      }
+      &:last-child{
+        border-bottom: none;
+      }
+      .user{
+        display: flex;
+        line-height: 1.4;
+        .head{
+          height: 80rpx;
+          width: 80rpx;
+          border-radius: 50%;
+          border: 1rpx solid #fff;
+        }
+        .user-info{
+          margin: 6rpx 0 0 20rpx;
+          .time{
+            margin-top: 6rpx;
+            font-size: 12px;
+            color: #999;
+          }
+        }
+      }
+      .info{
+        margin-top: 10rpx;
+      }
+      .image{
+        margin-top: 20rpx;
+        width: 100%;
+        height: 300rpx;
+        box-shadow: 0px 15px 10px -15px #999;
+        border-radius: 20rpx;
+      }
+      .operates{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        .operate{
+          margin: 0 40rpx;
+          padding: 20rpx;
+        }
+      }
+    }
+    .input-box{
+      margin: 20rpx;
+      display: flex;
+      width: 100%;
+      padding-bottom: 20rpx;
+      .input{
+        flex: 1;
+        padding: 10rpx 0;
+        padding-left: 40rpx;
+        border-radius: 40rpx;
+        background-color:#f5f5f5;
+        font-size: 12px;
+      }
+      .submit{
+        flex: none;
+        padding: 16rpx 40rpx 0;
+      }
+    }
+    .comment{
+      padding: 25rpx 20rpx;
+      border-bottom: 1rpx solid #f5f5f5;
+      .user{
+        display: flex;
+        .head{
+          flex: none;
+          height: 70rpx;
+          width: 70rpx;
+          border-radius: 50%;
+          border: 1rpx solid #fff;
+        }
+        .user-info{
+          flex: 1;
+          margin: 6rpx 0 0 20rpx;
+          .name{
+            font-size: 12px;
+            color: #666;
+          }
+          .info{
+            margin: 6rpx 20rpx 0 0;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<template>
+  <view class="container">
+    <view class="circle">
+      <view class="user">
+        <image class="head" src="https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg"/>
+        <view class="user-info">
+          <view class="name">蠢卫星</view>
+          <view class="time">2019.04.01</view>
+        </view>
+      </view>
+      <view>
+        <view class="info">{{circles.info}}</view>
+        <image class="image" src="{{circles.image}}" mode="aspectFill"/>
+      </view>
+      <view class="operates">
+        <view class="operate"><i class="iconfont icon-home"></i>43</view>
+        <view class="operate"><i class="iconfont icon-home"></i>254</view>
+      </view>
+    </view>
+    <view class="input-box">
+      <input type="text" class="input" placeholder="评论"/>
+      <view class="submit">
+        <i class="iconfont icon-home"></i>
+      </view>
+    </view>
+    <view class="comment">
+      <view class="user">
+        <image class="head" src="https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg"/>
+        <view class="user-info">
+          <view class="name">蠢卫星</view>
+          <view class="info">2019.04.01fghsfghfs评论内容h01fghsfghfs评论内容h01fghsfghfs评论内容h01fghsfghfs评论内容h01fghsfghfs评论内容h01fghsfghfs评论内容h01fghsfghfs评论内容h01fghsfghfs评论内容h01fghsfghfs评论内容h</view>
+        </view>
+      </view>
+    </view>
+    <view class="tip">
+      <view class="warning">还没有评论哦，点击评论</view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '动态详情'
+    }
+    components = {}
+    mixins = []
+    data = {
+      circles: {
+        info: '深空九号是人体u意思哦然后高科技的方式深空九号是人体u意思哦然后高科技的方式深空九号是人体u意思哦然后高科技的方式深空九号是人体u意思哦然后高科技的方式深空九号是人体u意思哦然后高科技的方式深空九号是人体u意思哦然后高科技的方式深空九号是人体u意思哦然后高科技的方式深空九号是人体u意思哦然后高科技的方式深空九号是人体u意思哦然后高科技的方式',
+        image: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg'
+      }
+    }
+    computed = {}
+    methods = {}
+    events = {}
+    onLoad() {}
+    onShow() {}
+  }
+</script>

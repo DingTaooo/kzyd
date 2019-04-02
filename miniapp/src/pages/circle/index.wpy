@@ -2,7 +2,7 @@
  * @Author: 蠢卫星 
  * @Date: 2019-03-30 11:59:32 
  * @Last Modified by: 蠢卫星
- * @Last Modified time: 2019-04-01 18:28:06
+ * @Last Modified time: 2019-04-02 17:04:34
  */
 
 <style lang="scss">
@@ -21,18 +21,15 @@
         .user{
           display: flex;
           .head{
-            height: 100rpx;
-            width: 100rpx;
+            height: 80rpx;
+            width: 80rpx;
             border-radius: 50%;
             border: 1rpx solid #fff;
           }
           .user-info{
-            margin: 16rpx 0 0 20rpx;
-            .name{
-              font-size: 16px;
-            }
+            margin: 6rpx 0 0 20rpx;
             .time{
-              margin-top: 12rpx;
+              margin-top: 6rpx;
               font-size: 12px;
               color: #999;
             }
@@ -40,6 +37,7 @@
         }
         .info{
           margin-top: 20rpx;
+          line-height: 1.4;
           overflow: hidden;
           text-overflow: ellipsis;
           display: -webkit-box;
@@ -74,11 +72,11 @@
       border-radius: 50%;
       background-color: #fff;
       box-shadow: 0px 15px 10px -15px #666;
-    }
-    .iconfont{
-      position: relative;
-      top: 20rpx;
-      left: 20rpx;
+      .iconfont{
+        position: relative;
+        top: 20rpx;
+        left: 20rpx;
+      }
     }
   }
 </style>
@@ -95,11 +93,13 @@
               <view class="time">2019.04.01</view>
             </view>
           </view>
-          <view class="info">{{item.info}}</view>
-          <image class="image" src="{{item.image}}" mode="aspectFill"/>
+          <navigator url="detail">
+            <view class="info">{{item.info}}</view>
+            <image class="image" src="{{item.image}}" mode="aspectFill"/>
+          </navigator>
           <view class="operates">
-            <view class="operate comment"><i class="iconfont icon-home"></i></view>
-            <view class="operate like"><i class="iconfont icon-home"></i></view>
+            <view class="operate"><i class="iconfont icon-home"></i>45</view>
+            <view class="operate"><i class="iconfont icon-home"></i>245</view>
           </view>
         </view>
       </repeat>

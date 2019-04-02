@@ -2,7 +2,7 @@
  * @Author: 蠢卫星 
  * @Date: 2019-04-01 17:58:42 
  * @Last Modified by: 蠢卫星
- * @Last Modified time: 2019-04-01 19:24:34
+ * @Last Modified time: 2019-04-02 17:50:16
  */
 
 <style lang="scss">
@@ -27,7 +27,7 @@
         margin-left: 80rpx;
         display: flex;
         .cover{
-        border: 1rpx solid #999;
+        border: 4rpx solid #fff;
         border-radius: 20rpx;
         height: 200rpx;
         width: 150rpx;
@@ -49,29 +49,145 @@
       .brief{
         margin: 0 40rpx;
         position: relative;
-        top: -80rpx;
+        top: -40rpx;
+        .desc{
+          line-height: 1.4;
+        }
+        .unfold {
+          .iconfont {
+            transform: rotate(30deg);
+          }
+        }
+        .fold {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          word-break:break-all;
+        }
+        .btn-fold {
+          margin-top: 25rpx;
+          text-align: center;
+          color: #53c68c;
+          .iconfont {
+            margin-left: 10rpx;
+            transition: transform .3s ease;
+          }
+        }
       }
+    }
+    .comment-catalog{
+      padding: 0 20rpx 80rpx;
+      .head{
+        display: flex;
+        font-size: 16px;
+        font-weight: bold;
+        .title{
+          margin-right: 40rpx;
+          &.bottom{
+            border-bottom: 4rpx solid #53c68c;
+          }
+        }
+      }
+      .body{
+        .show{
+          display: block;
+        }
+        .hide{
+          display: none;
+        }
+        .comment{
+          padding: 25rpx 0;
+          border-bottom: 1rpx solid #f5f5f5;
+          .user{
+            display: flex;
+            .head{
+              height: 80rpx;
+              width: 80rpx;
+              border-radius: 50%;
+              border: 1rpx solid #fff;
+            }
+            .user-info{
+              margin: 6rpx 0 0 20rpx;
+              .time{
+                margin-top: 6rpx;
+                font-size: 12px;
+                color: #999;
+              }
+            }
+          }
+          .info{
+            margin-top: 15rpx;
+            margin-left: 106rpx;
+          }
+        }
+        .catalog{
+          padding: 40rpx;
+          .chapter{
+            padding: 20rpx 0;
+            border-bottom: 1rpx solid #f5f5f5;
+          }
+        }
+      }
+    }
+    .add{
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 80rpx;
+      color: #fff;
+      padding-top: 24rpx;
+      text-align: center;
+      background-color: #53c68c;
     }
   }
 </style>
 
 <template>
   <view class="container">
-    <image class="bg" src="{{bookCover}}"/>
+    <image class="bg" src="{{book.bookCover}}"/>
     <view class="intro">
       <view class="head">
-        <image class="cover" src="{{bookCover}}"/>
+        <image class="cover" src="{{book.bookCover}}" mode="aspectFill"/>
         <view class="right">
-          <view class="name">{{bookName}}</view>
-          <view class="author">作者：{{bookAuthor}}</view>
+          <view class="name">{{book.bookName}}</view>
+          <view class="author">作者：{{book.bookAuthor}}</view>
         </view>
       </view>
       <view class="brief">
-        <text>
-          {{bookBrief}}
-        </text>
+        <view class="desc {{isUnfold ? 'unfold' : 'fold'}}">{{book.bookBrief}}</view>
+        <view class="btn-fold {{isUnfold ? 'unfold' : 'fold'}}" @tap="toggleFold" wx:if="{{book.bookBrief.length > 10}}">
+          <text>{{isUnfold ? '收起全部' : '展开全部'}}</text>
+          <i class="iconfont icon-home"></i>
+        </view>
       </view>
     </view>
+    <view class="comment-catalog">
+      <view class="head">
+        <view class="title {{isComment ? 'bottom' : ''}}" @tap="toggleComment(0)">书评</view>
+        <view class="title {{!isComment ? 'bottom' : ''}}" @tap="toggleComment(1)">目录</view>
+      </view>
+      <view class="body">
+        <view class="comment {{isComment ? 'show' : 'hide'}}">
+          <view class="user">
+            <image class="head" src="https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg"/>
+            <view class="user-info">
+              <view class="name">蠢卫星</view>
+              <view class="time">2019.04.01</view>
+            </view>
+          </view>
+          <view class="info">
+            <text>fghsfghfsgh</text>
+          </view>
+        </view>
+        <view class="catalog {{!isComment ? 'show' : 'hide'}}">
+          <navigator class="chapter" url="chapter">第一章：就发生过会发生</navigator>
+          <view class="chapter">第一章：就发生过会发生</view>
+        </view>
+      </view>
+    </view>
+    <view class="add">加入书架</view>
   </view>
 </template>
 
@@ -84,21 +200,40 @@
     components = {}
     mixins = []
     data = {
-      bookCover: 'https://cdn.dribbble.com/users/579162/screenshots/6262401/image.png',
-      bookName: '西游记',
-      bookAuthor: '吴承恩',
-      bookBrief: 'sghsfghsfg风格和书法国画书法国画书法国画书法和股市大幅回升风格和水果富含',
-      bookCatalog: [
-        '1',
-        '2',
-        '1',
-        '2',
-        '1',
-        '2'
-      ]
+      book: {
+        bookCover: 'https://cdn.dribbble.com/users/579162/screenshots/6262401/image.png',
+        bookName: '西游记',
+        bookAuthor: '吴承恩',
+        bookBrief: 'sghsfghsfg风格和书法国画书法国画书法国画书法和股市大幅回升风格和水果富含sghsfghsfg风格和书法国画书法国画书法国画书法和股市大幅回升风格和水果富含sghsfghsfg风格和书法国画书法国画书法国画书法和股市大幅回升风格和水果富含',
+        bookCatalog: [
+          '1',
+          '2',
+          '1',
+          '2',
+          '1',
+          '2'
+        ]
+      },
+      isUnfold: false,
+      isComment: true
     }
     computed = {}
-    methods = {}
+    methods = {
+      /**
+       *  内容简介展开收起
+       */
+      toggleFold() {
+        this.isUnfold = !this.isUnfold
+        this.$apply()
+      },
+      /**
+       *  切换评论和目录
+       */
+      toggleComment(a) {
+        a == 0 ? this.isComment = true : this.isComment = false
+        this.$apply()
+      }
+    }
     events = {}
     onLoad() {}
     onShow() {}
