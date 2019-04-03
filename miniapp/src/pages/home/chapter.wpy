@@ -2,37 +2,100 @@
  * @Author: 蠢卫星 
  * @Date: 2019-04-02 17:50:30 
  * @Last Modified by: 蠢卫星
- * @Last Modified time: 2019-04-02 18:46:07
+ * @Last Modified time: 2019-04-03 17:56:16
  */
 
 <style lang="scss">
   @import "../../assets/iconfont/iconfont";
   .container{
+    position: relative;
     padding: 0;
     line-height: 1.5;
-    .origin{
-      padding: 40rpx;
-      .header{
-        font-size: 16px;
-        font-weight: bold;
-      }
-      .article{
-        margin-top: 40rpx;
-      }
+    .header{
+      padding-top: 40rpx;
+      padding-left: 40rpx;
+      font-size: 16px;
+      font-weight: bold;
+      height: 80rpx;
     }
-    .analyze{
-      padding: 40rpx;
-      background-color: rgba(83,198,140,0.2);
+    .article{
+      width: 200%;
+      display: flex;
+      border-bottom: 10rpx solid #f5f5f5;
+      .origin, .analyze{
+        padding: 0 40rpx 40rpx;
+      }
+      .origin{
+        width: 100%;
+        &.show{
+          display: block;
+        }
+        &.hide{
+          display: none;
+        }
+      }
+      .analyze{
+        width: 100%;
+        background-color: #e8ebf0;
+        .title{
+          padding: 20rpx 0;
+          font-size: 16px;
+          font-weight: bold;
+        }
+      }
     }
     .fixed{
       position: fixed;
       right: 80rpx;
-      bottom: 300rpx;
-      .switch{
-        background: #545454;
+      bottom: 200rpx;
+      z-index: 999;
+      .ques, .switch{
+        color: #fff;
+        height: 80rpx;
+        width: 80rpx;
+        border-radius: 50%;
+        border: 2rpx solid #fff;
+        background-color: #53c68c;
+        text-align: center;
+        line-height: 80rpx;
       }
       .ques{
         margin-top: 40rpx;
+      }
+    }
+    .comment-box{
+      margin: 40rpx;
+      .title-box{
+        display: flex;
+        .title{
+          display: inline-block;
+          font-size: 16px;
+          font-weight: bold;
+          margin-right: 40rpx;
+          border-bottom: 4rpx solid #53c68c;
+        }
+        .input{
+          flex: 1;
+          display: inline-block;
+        }
+      }
+    }
+    .pre-next{
+      position: fixed;
+      bottom: 0;
+      height: 80rpx;
+      width: 100%;
+      color: #fff;
+      background-color: #53c68c;
+      display: flex;
+      text-align: center;
+      .pre, .next{
+        margin: 10rpx 0;
+        line-height: 60rpx;
+        width: 100%;
+      }
+      .pre{
+        border-right: 1px solid #fff;
       }
     }
   }
@@ -40,11 +103,11 @@
 
 <template>
   <view class="container">
-    <view class="origin">
-      <view class="header">
-        第一章 开始法国航空罗斯福的
-      </view>
-      <view class="article">
+    <view class="header">
+      第一章 开始法国航空罗斯福的
+    </view>
+    <view class="article {{articleState ? 'show' :'hide'}}" animation="{{animationData}}">
+      <view class="origin">
         先帝创业未半而中道崩殂(cú)，今天下三分，益州疲(pí)弊，此诚危急存亡之秋也。然侍卫之臣不懈(xiè)于内，忠志之士忘身于外者，盖追先帝之殊遇，欲报之于陛下也。诚宜开张圣听，以光先帝遗(yí)德，恢弘志士之气，不宜妄自菲薄，引喻失义，以塞(sè)忠谏之路也。
 
 宫中府中，俱为一体，陟(zhì )罚臧(zāng)否(pǐ)，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。
@@ -63,15 +126,38 @@
 
 今当远离，临表涕零，不知所云。
       </view>
-    </view>
-    <view class="analyze">
-      先帝开创的大业未完成一半却中途去世了。现在天下分为三国，益州地区民力匮乏，这确实是国家危急存亡的时期啊。不过宫廷里侍从护卫的官员不懈怠，战场上忠诚有志的将士们奋不顾身，大概是他们追念先帝对他们的特别的知遇之恩（作战的原因），想要报答在陛下您身上。（陛下）你实在应该扩大圣明的听闻，来发扬光大先帝遗留下来的美德，振奋有远大志向的人的志气，不应当随便看轻自己，说不恰当的话，以致于堵塞人们忠心地进行规劝的言路。
-
-皇宫中和朝廷里的大臣，本都是一个整体，奖惩功过，好坏，不应该有所不同。如果有做奸邪事，犯科条法令和忠心做善事的人，应当交给主管的官，判定他们受罚或者受赏，来显示陛下公正严明的治理，而不应当有偏袒和私心，使宫内和朝廷奖罚方法不同。
+      <view class="analyze">
+        <view class="title">解析:</view>
+    先帝开创的大业未完成一半却中途去世了。现在天下分为三国，益州地区民力匮乏，这确实是国家危急存亡的时期啊。不
+      </view>
     </view>
     <view class="fixed">
-      <view class="switch">解析</view>
-      <view class="ques">?</view>
+      <view class="switch" @tap="toggleShow">{{isAnalyzeShow ? '原文' : '解析'}}</view>
+    </view>
+    <view class="comment-box">
+      <view class="title-box">
+        <view class="title">评论</view>
+        <navigator class="input" url="inputComment">点击评论</navigator>
+      </view>
+      <view class="comment">
+        <view class="user">
+          <image class="head" src="https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg"/>
+          <view class="user-info">
+            <view class="name">蠢卫星</view>
+            <view class="time">2019.04.01</view>
+          </view>
+        </view>
+        <view class="info">
+          <text>fghsfghfsgh</text>
+        </view>
+        <view class="tip">
+          <view class="warning">还没有评论哦</view>
+        </view>
+      </view>
+    </view>
+    <view class="pre-next">
+      <view class="pre">上一篇</view>
+      <view class="next">下一篇</view>
     </view>
   </view>
 </template>
@@ -84,11 +170,41 @@
     }
     components = {}
     mixins = []
-    data = {}
+    data = {
+      articleState: true,
+      screenWidth: 0,
+      isAnalyzeShow: false,
+      animationData: {},
+      inputState: false
+    }
     computed = {}
-    methods = {}
+    methods = {
+      // 解析出现和隐藏动画
+      toggleShow() {
+        let animation = wx.createAnimation({
+          duration: 400,
+          timingFunction: 'ease',
+          delay: 0
+        })
+        if (this.isAnalyzeShow === false) {
+          animation.translateX(-this.screenWidth).step()
+          this.isAnalyzeShow = !this.isAnalyzeShow
+        } else {
+          animation.translateX(0).step()
+          this.isAnalyzeShow = !this.isAnalyzeShow
+        }
+        this.animationData = animation.export()
+        this.$apply()
+      }
+    }
+    getScreenWidth() {
+      this.screenWidth = wx.getSystemInfoSync().windowWidth
+      this.$apply()
+    }
     events = {}
-    onLoad() {}
+    onLoad() {
+      this.getScreenWidth()
+    }
     onShow() {}
   }
 </script>

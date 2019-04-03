@@ -1,0 +1,62 @@
+/*
+ * @Author: 蠢卫星 
+ * @Date: 2019-04-03 17:03:03 
+ * @Last Modified by: 蠢卫星
+ * @Last Modified time: 2019-04-03 17:54:12
+ */
+
+<style lang="scss">
+  @import "../../assets/iconfont/iconfont";
+  .container{
+    .input-box{
+      padding: 20rpx;
+      border-radius: 40rpx;
+      background-color:#f5f5f5;
+      textarea{
+        width: 100%;
+      }
+    }
+    .operate{
+      margin-top: 20rpx;
+      display: flex;
+      .cancle, .submit{
+        color: #fff;
+        border-radius: 40rpx;
+        margin: 40rpx;
+        padding: 20rpx;
+        width: 100%;
+        text-align: center;
+        background-color: #53c68c;
+      }
+    }
+  }
+</style>
+
+<template>
+  <view class="container">
+    <view class="input-box">
+      <textarea class="text" type="text"></textarea>
+    </view>
+    <view class="operate">
+      <view class="cancle">取消</view>
+      <view class="submit">确认</view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '评论'
+    }
+    components = {}
+    mixins = []
+    data = {}
+    computed = {}
+    methods = {}
+    events = {}
+    onLoad() {}
+    onShow() {}
+  }
+</script>

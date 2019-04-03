@@ -78,7 +78,7 @@
       }
     }
     .comment-catalog{
-      padding: 0 20rpx 80rpx;
+      padding: 0 40rpx 80rpx;
       .head{
         display: flex;
         font-size: 16px;
@@ -97,31 +97,7 @@
         .hide{
           display: none;
         }
-        .comment{
-          padding: 25rpx 0;
-          border-bottom: 1rpx solid #f5f5f5;
-          .user{
-            display: flex;
-            .head{
-              height: 80rpx;
-              width: 80rpx;
-              border-radius: 50%;
-              border: 1rpx solid #fff;
-            }
-            .user-info{
-              margin: 6rpx 0 0 20rpx;
-              .time{
-                margin-top: 6rpx;
-                font-size: 12px;
-                color: #999;
-              }
-            }
-          }
-          .info{
-            margin-top: 15rpx;
-            margin-left: 106rpx;
-          }
-        }
+        
         .catalog{
           padding: 40rpx;
           .chapter{

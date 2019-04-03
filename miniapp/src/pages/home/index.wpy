@@ -2,7 +2,7 @@
  * @Author: 蠢卫星 
  * @Date: 2019-03-29 13:25:52 
  * @Last Modified by: 蠢卫星
- * @Last Modified time: 2019-04-02 17:50:33
+ * @Last Modified time: 2019-04-03 17:51:38
  */
 
 <style lang="scss">
@@ -10,14 +10,6 @@
   .container{
     .search-box{
       width: 100%;
-      .search{
-        color: #999;
-        padding: 20rpx 0;
-        padding-left: 60rpx;
-        border-radius: 40rpx;
-        background-color:#f5f5f5;
-        font-size: 12px;
-      }
     }
     .column{
       border-radius: 20rpx;
@@ -110,7 +102,7 @@
 <template>
   <view class="container">
     <view class="search-box">
-      <navigator class="search" url="search">搜索您想要的图书</navigator>
+      <navigator class="input" url="search">搜索您想要的图书</navigator>
     </view>
     <view class="column my-books">
       <view class="title">- 我的书架 -</view>

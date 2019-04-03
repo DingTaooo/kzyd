@@ -24,6 +24,42 @@
       border-radius: 30rpx;
     }
   }
+  // 评论样式
+  .comment{
+    padding: 25rpx 0 120rpx;
+    border-bottom: 1rpx solid #f5f5f5;
+    .user{
+      display: flex;
+      .head{
+        height: 80rpx;
+        width: 80rpx;
+        border-radius: 50%;
+        border: 1rpx solid #fff;
+      }
+      .user-info{
+        margin: 6rpx 0 0 20rpx;
+        .time{
+          margin-top: 6rpx;
+          font-size: 12px;
+          color: #999;
+        }
+      }
+    }
+    .info{
+      margin-top: 15rpx;
+      margin-left: 106rpx;
+    }
+  }
+  // 输入框样式
+  .input{
+    color: #999;
+    flex: 1;
+    padding: 20rpx 0;
+    padding-left: 60rpx;
+    border-radius: 40rpx;
+    background-color:#f5f5f5;
+    font-size: 12px;
+  }
 </style>
 
 <script>
@@ -36,15 +72,16 @@
         'pages/home/bookDetail',
         'pages/home/chapter',
         'pages/home/search',
+        'pages/home/inputComment',
         'pages/circle/index',
         'pages/circle/detail',
         'pages/user/index'
       ],
       window: {
         backgroundTextStyle: 'light',
-        navigationBarBackgroundColor: '#fff',
+        navigationBarBackgroundColor: '#53c68c',
         navigationBarTitleText: 'WeChat',
-        navigationBarTextStyle: 'black'
+        navigationBarTextStyle: 'white'
       },
       tabBar: {
         color: '#cdcdcd',
