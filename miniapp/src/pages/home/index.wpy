@@ -2,11 +2,12 @@
  * @Author: 蠢卫星 
  * @Date: 2019-03-29 13:25:52 
  * @Last Modified by: 蠢卫星
- * @Last Modified time: 2019-04-03 17:51:38
+ * @Last Modified time: 2019-04-06 21:49:44
  */
 
 <style lang="scss">
   @import "../../assets/iconfont/iconfont";
+  @import "../../assets/commonStyle";
   .container{
     .search-box{
       width: 100%;
@@ -48,50 +49,6 @@
             margin-bottom: 10rpx;
             font-size: 10px;
             color: #999;
-          }
-        }
-      }
-      .othor-books{
-        padding: 20rpx;
-        .book{
-          display: flex;
-          margin: 40rpx 0;
-          &:first-child{
-            margin-top: 0;
-          }
-          .cover{
-            flex: none;
-            height: 160rpx;
-            width: 160rpx;
-            .image{
-              height: 100%;
-              width: 100%;
-              border-radius: 10rpx;
-              overflow: hidden;
-              box-shadow: 0px 15px 10px -15px #999;
-            }
-          }
-          .intro{
-            flex: 1;
-            margin-left: 40rpx;
-            max-width: 480rpx;
-            .name{
-              font-size: 16px;
-            }
-            .author{
-              font-size: 10px;
-              color: #999;
-            }
-            .brief{
-              overflow: hidden;
-              text-overflow: ellipsis;
-              display: -webkit-box;
-              -webkit-line-clamp: 2;
-              -webkit-box-orient: vertical;
-              word-break:break-all;
-              font-size: 12px;
-              color: #666;
-            }
           }
         }
       }

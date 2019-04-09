@@ -1,0 +1,112 @@
+/*
+ * @Author: 蠢卫星 
+ * @Date: 2019-04-06 21:13:04 
+ * @Last Modified by: 蠢卫星
+ * @Last Modified time: 2019-04-06 21:42:24
+ */
+
+<style lang="scss">
+  @import "../../assets/iconfont/iconfont";
+  .book{
+    .intro{
+      .head{
+        display: flex;
+        .name{
+          flex: 1;
+        }
+        .remove{
+          padding: 8rpx 10rpx 0;
+          flex: none;
+          font-size: 10px;
+          color: #fff;
+          background-color: #53c68c;
+          border-radius: 10rpx;
+        }
+      }
+    }
+  }
+</style>
+
+<template>
+  <view class="container">
+    <view class="othor-books">
+      <repeat for="{{books}}" key="index" index= "index" item= "item">
+        <view class="book">
+          <view class="cover">
+            <image src="{{item.cover}}" mode="aspectFill" class="image"/>
+          </view>
+          <view class="intro">
+            <view class="head">
+              <view class="name ellipsis">
+                {{item.name}}了不起的盖子吧dfgsdfgsdfgsdfg电风扇电风扇发士大夫
+              </view>
+              <view class="remove">移出书架</view>
+            </view>
+            <view class="author ellipsis">
+              {{item.author}}
+            </view>
+            <view class="brief">
+              {{item.author}}简介ewrwerwwwwwwwwwwwwwwwwwwwwwwwwwwsdfgsdfg发射点发射点当时的双方都是
+            </view>
+          </view>
+        </view>
+      </repeat>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '我的书架'
+    }
+    components = {}
+    mixins = []
+    data = {
+      books: [
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '123',
+          author: '蠢卫星'
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '123',
+          author: '蠢卫星'
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '123',
+          author: '蠢卫星'
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '123',
+          author: '蠢卫星'
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '哦iOS给是个',
+          author: '蠢卫星'
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/d3976c6ely1g1juv01fr7j20tz15rn0p.jpg',
+          title: 12345,
+          name: '123',
+          author: '蠢卫星'
+        }
+      ]
+    }
+    computed = {}
+    methods = {}
+    events = {}
+    onLoad() {}
+    onShow() {}
+  }
+</script>

@@ -2,7 +2,7 @@
  * @Author: 蠢卫星 
  * @Date: 2019-03-30 11:59:32 
  * @Last Modified by: 蠢卫星
- * @Last Modified time: 2019-04-02 17:04:34
+ * @Last Modified time: 2019-04-06 21:40:21
  */
 
 <style lang="scss">
@@ -104,9 +104,9 @@
         </view>
       </repeat>
     </view>
-    <view class="add">
+    <navigator class="add" url="addCircle">
       <i class="iconfont icon-home"></i>
-    </view>
+    </navigator>
   </view>
 </template>
 

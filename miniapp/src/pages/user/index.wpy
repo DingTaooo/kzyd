@@ -2,7 +2,7 @@
  * @Author: 蠢卫星 
  * @Date: 2019-03-29 13:25:52 
  * @Last Modified by: 蠢卫星
- * @Last Modified time: 2019-04-02 11:54:17
+ * @Last Modified time: 2019-04-06 21:12:23
  */
 
 <style lang="scss">
@@ -58,7 +58,7 @@
     </view>
     <view class="operations">
       <repeat for="{{operation}}" key="index" index= "index" item= "item">
-        <view class="operation"><i class="iconfont {{item.icon}}"></i>{{item.operateName}}</view>
+        <navigator class="operation" url="{{item.url}}"><i class="iconfont {{item.icon}}"></i>{{item.operateName}}</navigator>
       </repeat>
     </view>
   </view>
@@ -77,15 +77,18 @@
       operation: [
         {
           icon: 'icon-book',
-          operateName: '我的消息'
+          operateName: '我的书架',
+          url: 'myBooks'
         },
         {
           icon: 'icon-home',
-          operateName: '我的消息'
+          operateName: '我的消息',
+          url: 'myMessage'
         },
         {
           icon: 'icon-book',
-          operateName: '我的消息'
+          operateName: '关于小程序',
+          url: 'myMessage'
         }
       ]
     }

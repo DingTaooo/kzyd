@@ -1,0 +1,80 @@
+/*
+ * @Author: 蠢卫星 
+ * @Date: 2019-04-06 21:41:28 
+ * @Last Modified by: 蠢卫星
+ * @Last Modified time: 2019-04-06 22:02:29
+ */
+
+<style lang="scss">
+  @import "../../assets/iconfont/iconfont";
+  .container{
+    .input-box{
+      padding: 20rpx;
+      border-radius: 40rpx;
+      background-color:#f5f5f5;
+      textarea{
+        width: 100%;
+      }
+    }
+    .add-img{
+      margin-top: 20rpx;
+      width: 120rpx;
+      height: 120rpx;
+      color: #999;
+      font-size: 10px;
+      border-radius: 20rpx;
+      border: 1rpx solid #f5f5f5;
+      text-align: center;
+      .text{
+        margin-top: 10rpx;
+      }
+
+    }
+    .operate{
+      margin-top: 20rpx;
+      display: flex;
+      .cancle, .submit{
+        color: #fff;
+        border-radius: 40rpx;
+        margin: 0 40rpx;
+        padding: 20rpx;
+        width: 100%;
+        text-align: center;
+        background-color: #53c68c;
+      }
+    }
+  }
+</style>
+
+<template>
+  <view class="container">
+    <view class="input-box">
+      <textarea class="text" type="text"></textarea>
+    </view>
+    <view class="add-img">
+      <i class="iconfont icon-home"></i>
+      <view class="text">添加图片</view>
+    </view>
+    <view class="operate">
+      <view class="cancle">取消</view>
+      <view class="submit">提交</view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '发布动态'
+    }
+    components = {}
+    mixins = []
+    data = {}
+    computed = {}
+    methods = {}
+    events = {}
+    onLoad() {}
+    onShow() {}
+  }
+</script>
