@@ -1,3 +1,9 @@
+/*
+ * @Author: 蠢卫星 
+ * @Date: 2019-04-11 13:40:09 
+ * @Last Modified by: 蠢卫星
+ * @Last Modified time: 2019-04-11 13:57:35
+ */
 'use strict'
 // Template version: 1.3.1
 // see http://vuejs-templates.github.io/webpack for documentation.
@@ -10,11 +16,19 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+     "/api":{
+      target:"http://127.0.0.1:8000",
+      changeOrigin:true,
+      pathRewrite:{
+           '^/api':''
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 8000, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
