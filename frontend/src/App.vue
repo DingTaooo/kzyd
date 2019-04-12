@@ -21,23 +21,29 @@
         <el-aside width="200px">
           <el-row>
             <el-col>
-              <el-menu>
+              <el-menu default-active="1">
                 <router-link to="/index">
                   <el-menu-item index="1">
-                    <i class="el-icon-menu"></i>
-                    <span slot="title">index</span>
+                    <i class="el-icon-tickets"></i>
+                    <span slot="title">图书管理</span>
                   </el-menu-item>
                 </router-link>
                 <router-link to="/user">
                   <el-menu-item index="2">
-                    <i class="el-icon-menu"></i>
-                    <span slot="title">user</span>
+                    <i class="el-icon-more-outline"></i>
+                    <span slot="title">数据中心</span>
                   </el-menu-item>
                 </router-link>
                 <router-link to="/">
                   <el-menu-item index="3">
-                    <i class="el-icon-menu"></i>
-                    <span slot="title">hello</span>
+                    <i class="el-icon-bell"></i>
+                    <span slot="title">消息通知</span>
+                  </el-menu-item>
+                </router-link>
+                <router-link to="/">
+                  <el-menu-item index="4">
+                    <i class="el-icon-news"></i>
+                    <span slot="title">用户中心</span>
                   </el-menu-item>
                 </router-link>
               </el-menu>
@@ -45,11 +51,6 @@
           </el-row>
         </el-aside>
         <el-main>
-          <img src="./assets/logo.png">
-          <p>
-            <router-link to="/index">index</router-link>
-            <router-link to="/user">user</router-link>
-          </p>
           <router-view/>
         </el-main>
       </el-container>

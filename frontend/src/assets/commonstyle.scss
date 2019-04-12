@@ -1,3 +1,9 @@
+/*
+ * @Author: 蠢卫星 
+ * @Date: 2019-04-12 13:32:58 
+ * @Last Modified by:   蠢卫星 
+ * @Last Modified time: 2019-04-12 13:32:58 
+ */
 
 body {
   margin: 0;
@@ -72,12 +78,12 @@ a:hover {
 }
 .el-main {
   color: #333;
-  text-align: center;
 }
 body>.el-container {
   margin-bottom: 40px;  
 }
 footer {
+  border-top: 1px solid #dddada;
   height: 30px;
   line-height: 30px;
   font-size: 12px;
