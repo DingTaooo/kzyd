@@ -2,25 +2,29 @@
  * @Author: 蠢卫星 
  * @Date: 2019-04-12 13:32:50 
  * @Last Modified by: 蠢卫星
- * @Last Modified time: 2019-04-12 13:41:01
+ * @Last Modified time: 2019-04-13 14:16:54
  */
 
 <template>
   <div class="container">
+    <div class="header">
+      <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item>图书管理</el-breadcrumb-item>
+      </el-breadcrumb>
+
+        <router-link to="/addBook">
+      <div class="book-add"><i class="el-icon-plus"></i>新增图书</div>
+        </router-link>
+    </div>
+    <router-link to="/bookDetail">
     <div class="books-box">
       <div v-for="book in books" :key="book.index" class="book-box">
         <img :src="book.coverUrl" class="book-cover" />
         <div class="book-name">{{ book.name }}</div>
       </div>
-      <div class="book-box">
-        <router-link to="/addBook">
-          <div  class="book-cover">
-            <i class="el-icon-arrow-down el-icon-plus"></i>
-            <div>新增</div>
-          </div>
-        </router-link>
-      </div>
     </div>
+      </router-link>
     <button v-on:click="getNewsInfo">222</button>
   </div>
 </template>
@@ -73,6 +77,22 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   .container {
+    .header{
+      display: flex;
+      justify-content: space-between;
+      height: 40px;
+      line-height: 40px;
+      .book-add{
+        margin-right: 80px;
+        height: 40px;
+        padding: 0 20px;
+        background-color: #53c68c;
+        border-radius: 20px;
+        text-align: center;
+        color: #fff;
+        line-height: 40px;
+      }
+    }
     .books-box {
       .book-box {
         display: inline-block;
@@ -103,6 +123,7 @@
           text-overflow: ellipsis;
         }
       }
+
     }
   }
 </style>

@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import index from '@/components/index'
 import user from '@/components/user'
 import addBook from '@/components/addBook'
+import bookDetail from '@/components/bookDetail'
+import chapterDetail from '@/components/chapterDetail'
 
 Vue.use(Router)
 
@@ -29,6 +31,16 @@ export default new Router({
       path: '/addBook',
       name: 'addBook',
       component: addBook
+    },
+    {
+      path: '/bookDetail',
+      name: 'bookDetail',
+      component: bookDetail
+    },
+    {
+      path: '/chapterDetail',
+      name: 'chapterDetail',
+      component: chapterDetail
     }
   ]
 })
