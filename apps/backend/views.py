@@ -1,9 +1,7 @@
-from django.shortcuts import render
-
 # Create your views here.
 
 from django.shortcuts import HttpResponse
-from backend import models
+from apps.users import models
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -12,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 def orm(request):
     # 创建数据
     # 第一种方式
-    models.UserInfo.objects.create(username="root", password="123")
+    models.UserInfo.objects.create(username="root", password="123456")
     # 第二种方式
     # obj = models.UserInfo(username='dt', password="123")
     # obj.save()
@@ -31,3 +29,8 @@ def orm(request):
 @csrf_exempt
 def test_api(request):
     return JsonResponse({"result": 0, "msg": "执行成功"})
+
+def get_book(request):
+    books_list = models.Books.objects.all()
+    print(books_list)
+    return books_list

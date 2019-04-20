@@ -89,3 +89,9 @@ footer {
   font-size: 12px;
   text-align: center;
 }
+
+.elli{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
